@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch That Step</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
+    <h1>🎲 Watch That Step</h1>
+    <div class="controls">
+      <label>Select Players:</label>
+      <select id="player-count">
+        <option value="1">Single Player</option>
+        <option value="2">Two Players</option>
+      </select>
+      <button id="start-game">Start Game</button>
+    </div>
+
+    <div class="board" id="game-board"></div>
+
+    <div class="turn-info" id="turn-info"></div>
+    <div class="rolled" id="rolled-info"></div>
+    <div class="dice-container" id="dice-container">
+      <div class="dice" id="dice">
+        <div class="dice-face"></div>
+        <div class="dice-face"></div>
+        <div class="dice-face"></div>
+        <div class="dice-face"></div>
+        <div class="dice-face"></div>
+        <div class="dice-face"></div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button id="roll-dice" class="btn blue">🎲 Roll Dice</button>
+      <button id="end-turn" class="btn green">✅ End Turn</button>
+      <button id="skip-turn" class="btn red">⏩ Skip Turn</button>
+    </div>
+
+    <div class="scores">
+      <div id="player1-info"></div>
+      <div id="player2-info"></div>
+    </div>
+
+    <button id="toggle-log" class="btn log-toggle">📜 Show Log</button>
+    <div class="log-container" id="log-container"></div>
+
+    <div id="game-over" class="game-over">
+      <h2 id="winner-message"></h2>
+      <button id="restart-game" class="btn green">🔄 Play Again</button>
+    </div>
+  </div>
+
+  <div id="hover-message"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
