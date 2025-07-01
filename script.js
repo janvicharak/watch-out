@@ -461,6 +461,9 @@ const gameOverScreen = document.getElementById("game-over");
 const winnerMessage = document.getElementById("winner-message");
 const restartBtn = document.getElementById("restart-game");
 const dice = document.getElementById("dice");
+const showRulesBtn = document.getElementById("show-rules");
+const closeRulesBtn = document.getElementById("close-rules");
+const rulesModal = document.getElementById("rules-modal");
 
 let players = [];
 let positions = [];
@@ -477,6 +480,17 @@ endTurnBtn.addEventListener("click", endTurn);
 skipTurnBtn.addEventListener("click", skipTurn);
 toggleLogBtn.addEventListener("click", toggleLog);
 restartBtn.addEventListener("click", restartGame);
+
+showRulesBtn.addEventListener("click", () => {
+  rulesModal.classList.remove("hidden");
+});
+
+closeRulesBtn.addEventListener("click", () => {
+  rulesModal.classList.add("hidden");
+});
+
+const forceRestartBtn = document.getElementById("force-restart");
+forceRestartBtn.addEventListener("click", restartGame);
 
 function toggleLog() {
   logContainer.style.display = logContainer.style.display === "block" ? "none" : "block";

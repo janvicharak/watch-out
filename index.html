@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Watch That Step</title>
   <link rel="stylesheet" href="style.css">
@@ -25,14 +24,7 @@
     <div class="turn-info" id="turn-info"></div>
     <div class="rolled" id="rolled-info"></div>
     <div class="dice-container" id="dice-container">
-      <div class="dice" id="dice">
-        <div class="dice-face" ></div>
-        <div class="dice-face" ></div>
-        <div class="dice-face" ></div>
-        <div class="dice-face" ></div>
-        <div class="dice-face" ></div>
-        <div class="dice-face" ></div>
-      </div>
+      <div class="dice" id="dice"></div>
     </div>
 
     <div class="buttons">
@@ -45,6 +37,9 @@
       <div id="player1-info"></div>
       <div id="player2-info"></div>
     </div>
+
+    <!-- ✅ Restart Game Button -->
+    <button id="force-restart" class="btn red">🔁 Restart Game</button>
 
     <button id="toggle-log" class="btn log-toggle">📜 Show Log</button>
     <div class="log-container" id="log-container"></div>
