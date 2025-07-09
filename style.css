@@ -162,11 +162,9 @@ select, button {
 
 /* DICE STYLE */
 .dice-container {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin: 10px auto;
+  display: none; /* Hide dice container if unused */
 }
+
 
 .dice {
   position: relative;

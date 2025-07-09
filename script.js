@@ -459,11 +459,35 @@ const rolledInfo = document.getElementById("rolled-info");
 const hoverMessage = document.getElementById("hover-message");
 const gameOverScreen = document.getElementById("game-over");
 const winnerMessage = document.getElementById("winner-message");
-const restartBtn = document.getElementById("restart-game");
 const dice = document.getElementById("dice");
 const showRulesBtn = document.getElementById("show-rules");
 const closeRulesBtn = document.getElementById("close-rules");
 const rulesModal = document.getElementById("rules-modal");
+const restartToMenuBtn = document.getElementById("restart-to-menu");
+
+restartToMenuBtn.addEventListener("click", () => {
+  // Reset all UI and state
+  gameActive = false;
+  board.innerHTML = "";
+  turnInfo.textContent = "";
+  rolledInfo.textContent = "";
+  player1Info.textContent = "";
+  player2Info.textContent = "";
+  logContainer.innerHTML = "";
+
+  // Hide all game elements
+  document.querySelector(".board").style.display = "none";
+  document.querySelector(".buttons").style.display = "none";
+  document.querySelector(".scores").style.display = "none";
+  document.getElementById("restart-to-menu").classList.add("hidden");
+  document.getElementById("toggle-log").style.display = "none";
+
+  // Show start controls again
+  document.querySelector(".controls").style.display = "block";
+});
+
+
+
 
 let players = [];
 let positions = [];
@@ -480,6 +504,10 @@ endTurnBtn.addEventListener("click", endTurn);
 skipTurnBtn.addEventListener("click", skipTurn);
 toggleLogBtn.addEventListener("click", toggleLog);
 restartBtn.addEventListener("click", restartGame);
+goBackBtn.addEventListener("click", returnToMenu);
+
+
+
 
 showRulesBtn.addEventListener("click", () => {
   rulesModal.classList.remove("hidden");
@@ -489,8 +517,34 @@ closeRulesBtn.addEventListener("click", () => {
   rulesModal.classList.add("hidden");
 });
 
-const forceRestartBtn = document.getElementById("force-restart");
-forceRestartBtn.addEventListener("click", restartGame);
+function returnToMenu() {
+  // Reset state
+  players = [];
+  positions = [];
+  scores = [];
+  currentPlayerIndex = 0;
+  gameActive = false;
+  currentRollCount = 0;
+
+  // Hide game board, scores, etc.
+  board.innerHTML = "";
+  turnInfo.textContent = "";
+  rolledInfo.textContent = "";
+  logContainer.innerHTML = "";
+  logContainer.style.display = "none";
+  player1Info.innerHTML = "";
+  player2Info.innerHTML = "";
+  gameOverScreen.style.display = "none";
+
+  // Show controls again
+  document.querySelector(".controls").style.display = "block";
+
+  // Disable buttons
+  rollBtn.disabled = true;
+  endTurnBtn.disabled = true;
+  skipTurnBtn.disabled = true;
+}
+
 
 function toggleLog() {
   logContainer.style.display = logContainer.style.display === "block" ? "none" : "block";
@@ -510,11 +564,37 @@ function startGame() {
   currentRollCount = 0;
   gameOverScreen.style.display = "none";
 
+  // ✅ Show game elements, hide menu
+  document.querySelector(".controls").style.display = "none";
+  document.querySelector(".board").style.display = "flex";
+  document.querySelector(".buttons").style.display = "flex";
+  document.querySelector(".scores").style.display = "flex";
+  document.getElementById("restart-to-menu").classList.remove("hidden");
+  document.getElementById("toggle-log").style.display = "inline-block";
+
   createBoard();
   renderPlayers();
   log("Game started!");
   startTurn();
 }
+
+/*function startGame() {
+  document.getElementById("restart-to-menu").classList.remove("hidden");
+
+  const playerCount = parseInt(playerCountSelect.value);
+  players = playerCount === 1 ? ["🔵", "🤖"] : ["🔵", "🔴"];
+  positions = [0, 0];
+  scores = [0, 0];
+  currentPlayerIndex = 0;
+  gameActive = true;
+  currentRollCount = 0;
+  gameOverScreen.style.display = "none";
+
+  createBoard();
+  renderPlayers();
+  log("Game started!");
+  startTurn();
+}*/
 
 function createBoard() {
   board.innerHTML = "";
@@ -736,3 +816,11 @@ function showHoverMessage(text) {
     hoverMessage.classList.remove("show");
   }, 2500);
 }
+// Initial visibility state (start menu only)
+window.onload = () => {
+  document.querySelector(".board").style.display = "none";
+  document.querySelector(".buttons").style.display = "none";
+  document.querySelector(".scores").style.display = "none";
+  document.getElementById("restart-to-menu").classList.add("hidden");
+  document.getElementById("toggle-log").style.display = "none";
+};
